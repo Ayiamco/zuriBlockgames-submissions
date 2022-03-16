@@ -10,6 +10,11 @@ npx hardhat compile
 npx hardhat clean
 npx hardhat test
 npx hardhat node
-node scripts/sample-script.js
+node scripts/deployAyiamcoERC20.js
 npx hardhat help
 ```
+
+#To run the deploy script
+
+- Create a .env file in the root directory
+- Add the following variables ALCHEMY_URL=<Your Alchemy Url or some other node provider like Infura> ACCOUNT=<Your private key>
