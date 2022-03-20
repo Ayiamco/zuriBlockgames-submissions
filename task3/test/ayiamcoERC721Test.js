@@ -45,14 +45,14 @@ describe("AyiamcoERC721 Contract", async () => {
   });
 
   it("Should Increment tokenId.", async function () {
-    const expectedCurrentTokenId = 3; //After to tokens have been minted
+    const expectedCurrentTokenId = 2; //After to tokens have been minted
 
     let mintTxn = await ayiamcoToken.mintToken("http://dummy.com/test.png", "dummy description");
     await mintTxn.wait();
     mintTxn = await ayiamcoToken.mintToken("http://dummy.com/test.png", "dummy description");
     await mintTxn.wait();
 
-    let actualCurrentTokenId = await ayiamcoToken.getCurrentTokenId();
+    let actualCurrentTokenId = await ayiamcoToken.get_totalSupply();
 
     expect(expectedCurrentTokenId).to.equal(actualCurrentTokenId);
   });

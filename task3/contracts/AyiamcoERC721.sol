@@ -1,18 +1,6 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-/*
-Create struct for tokenMetaData
-- name (Any name)
-- image (url to image on IPFS)
-- description (some text)
-Create tokenId counter
-Mint token function
-Mapping for token=> address
-Mapping for token => metadata
-
-*/
-
 contract AyiamcoERC721 {
     string private _name;
 
@@ -26,12 +14,12 @@ contract AyiamcoERC721 {
 
     mapping(uint256 => TokenMetaData) private _tokenMetaData;
 
-    uint256 private currentTokenId;
+    uint256 private _totalSupply;
 
-    constructor(string memory name_, string memory symbol_) {
-        _name = name_;
-        _symbol = symbol_;
-        currentTokenId = 1;
+    constructor() {
+        _name = "AyiamcoToken";
+        _symbol = "AYT";
+        _totalSupply = 0;
         _owner = msg.sender;
     }
 
@@ -52,18 +40,18 @@ contract AyiamcoERC721 {
     {
         bytes memory imageUrlBytes = bytes(imageUrl);
         require(imageUrlBytes.length > 0, "Image Url cannot be empty string.");
-        _owners[currentTokenId] = msg.sender;
+        _owners[_totalSupply + 1] = msg.sender;
         _balances[msg.sender] = _balances[msg.sender] + 1;
-        _tokenMetaData[currentTokenId] = TokenMetaData(
-            append(_name, " ", uint2str(currentTokenId)),
+        _tokenMetaData[_totalSupply] = TokenMetaData(
+            append(_name, " ", uint2str(_totalSupply)),
             imageUrl,
             description
         );
-        currentTokenId = currentTokenId + 1;
+        _totalSupply = _totalSupply + 1;
     }
 
-    function getCurrentTokenId() public view onlyOwner returns (uint256) {
-        return currentTokenId;
+    function get_totalSupply() public view onlyOwner returns (uint256) {
+        return _totalSupply;
     }
 
     function append(
