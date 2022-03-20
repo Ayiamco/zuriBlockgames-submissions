@@ -1,101 +1,33 @@
-//SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: UNLICENSED
+
 pragma solidity ^0.8.0;
 
-contract AyiamcoERC721 {
-    string private _name;
+// We first import some OpenZeppelin Contracts.
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@openzeppelin/contracts/utils/Counters.sol";
 
-    string private _symbol;
+// We inherit the contract we imported. This means we'll have access
+// to the inherited contract's methods.
+contract AyiamcoERC721 is ERC721URIStorage {
+    // Magic given to us by OpenZeppelin to help us keep track of tokenIds.
+    using Counters for Counters.Counter;
+    Counters.Counter private _tokenIds;
 
-    address private _owner;
+    // We need to pass the name of our NFTs token and its symbol.
+    constructor() ERC721("AyiamcoNFT", "ANF") {}
 
-    mapping(uint256 => address) private _owners;
+    // A function our user will hit to get their NFT.
+    function mintAyiamcoNFT(string memory tokenUri) public {
+        // Get the current tokenId, this starts at 0.
+        uint256 newItemId = _tokenIds.current();
 
-    mapping(address => uint256) private _balances;
+        // Actually mint the NFT to the sender using msg.sender.
+        _safeMint(msg.sender, newItemId);
 
-    mapping(uint256 => TokenMetaData) private _tokenMetaData;
+        // Set the NFTs data.
+        _setTokenURI(newItemId, tokenUri);
 
-    uint256 private _totalSupply;
-
-    constructor() {
-        _name = "AyiamcoToken";
-        _symbol = "AYT";
-        _totalSupply = 0;
-        _owner = msg.sender;
-    }
-
-    function balanceOf(address owner) public view returns (uint256) {
-        require(owner != address(0), "Balance query for the zero address");
-        return _balances[owner];
-    }
-
-    function ownerOf(uint256 tokenId) public view returns (address) {
-        address owner = _owners[tokenId];
-        require(owner != address(0), "Owner query for nonexistent token");
-        return owner;
-    }
-
-    function mintToken(string memory imageUrl, string memory description)
-        public
-        payable
-    {
-        bytes memory imageUrlBytes = bytes(imageUrl);
-        require(imageUrlBytes.length > 0, "Image Url cannot be empty string.");
-        _owners[_totalSupply + 1] = msg.sender;
-        _balances[msg.sender] = _balances[msg.sender] + 1;
-        _tokenMetaData[_totalSupply] = TokenMetaData(
-            append(_name, " ", uint2str(_totalSupply)),
-            imageUrl,
-            description
-        );
-        _totalSupply = _totalSupply + 1;
-    }
-
-    function get_totalSupply() public view onlyOwner returns (uint256) {
-        return _totalSupply;
-    }
-
-    function append(
-        string memory a,
-        string memory b,
-        string memory c
-    ) internal pure returns (string memory) {
-        return string(abi.encodePacked(a, b, c));
-    }
-
-    function uint2str(uint256 _i)
-        internal
-        pure
-        returns (string memory _uintAsString)
-    {
-        if (_i == 0) {
-            return "0";
-        }
-        uint256 j = _i;
-        uint256 len;
-        while (j != 0) {
-            len++;
-            j /= 10;
-        }
-        bytes memory bstr = new bytes(len);
-        uint256 k = len;
-        while (_i != 0) {
-            k = k - 1;
-            uint8 temp = (48 + uint8(_i - (_i / 10) * 10));
-            bytes1 b1 = bytes1(temp);
-            bstr[k] = b1;
-            _i /= 10;
-        }
-        return string(bstr);
-    }
-
-    struct TokenMetaData {
-        string Name;
-        string ImageUrl;
-        string Description;
-    }
-
-    modifier onlyOwner() {
-        require(msg.sender == _owner);
-        _;
+        // Increment the counter for when the next NFT is minted.
+        _tokenIds.increment();
     }
 }

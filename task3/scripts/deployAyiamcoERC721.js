@@ -1,3 +1,4 @@
+//Script to deploy contract
 const main = async () => {
   const [deployer] = await hre.ethers.getSigners();
   const accountBalance = await deployer.getBalance();
