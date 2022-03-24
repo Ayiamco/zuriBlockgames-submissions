@@ -13,3 +13,11 @@ Create a simple ERC20 and ERC721 tokens that make use of inheritance and importe
 [View AyiamcoERC721 contract transactions on etherscan](https://rinkeby.etherscan.io/address/0x7456c1959aeC765B254387566Dd8d03fC3dEFe65)
 
 [IPFS LINK 1](https://ipfs.infura.io/ipfs/QmazQ7vbkrD7tBg94t4nxLXa4bvaZj44TQGJnDpquNFtHW) [IPFS LINK 2](https://ipfs.infura.io/ipfs/QmedzMkyeGGJSncJdrQ44JvnnNcr1HR2Kd5br8jz8oD6Dn)
+
+### Task 4
+
+Create a simple user UI/Frontend that interacts with a staking/vesting contract. Contracts and project files can be found at [my task 4 submission](https://github.com/Ayiamco/zuriBlockgames-submissions/tree/master/task4)
+
+[Deployed UI](https://ayiamcotoken.netlify.app/)
+
+[View AyiamcoStakingToken contract transactions on etherscan](https://rinkeby.etherscan.io/address/0xa4B4c91D1e018c6F92C8549753cED579c482f9D7)
