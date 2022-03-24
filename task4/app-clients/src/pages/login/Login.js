@@ -45,11 +45,6 @@ function LoginPage({ setIsWalletConnected, isWalletConnected }) {
   };
 
   const connectWallet = async () => {
-    // ReactGA.event({
-    //   category: "ConnectWallet",
-    //   action: "Clicked on connect wallet",
-    //   label: "ConnectWallet",
-    // });
     try {
       const { ethereum } = window;
       if (!ethereum) {
@@ -83,7 +78,7 @@ function LoginPage({ setIsWalletConnected, isWalletConnected }) {
     <div className="connectMainContainer">
       <div className="connectLeft">
         <h1>
-          Wishes
+          Ayiamco
           <span role="img" aria-label="cookies-emoji">
             🎁
           </span>
@@ -106,10 +101,7 @@ function LoginPage({ setIsWalletConnected, isWalletConnected }) {
           }}
         />
 
-        <h6
-          className="errorMessage"
-          style={{ display: errorMessage ? "block" : "none" }}
-        >
+        <h6 className="errorMessage" style={{ display: errorMessage ? "block" : "none" }}>
           {errorMessage.errorMessage}
         </h6>
       </div>

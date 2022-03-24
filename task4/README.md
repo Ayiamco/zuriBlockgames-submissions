@@ -17,4 +17,4 @@ npx hardhat help
 #To run the deploy script
 
 - Create a .env file in the root directory
-- Add the following variables ALCHEMY_URL=<Your Alchemy Url or some other node provider like Infura> ACCOUNT=<Your private key>
+- Add the following variables ALCHEMY_URL="Your Alchemy Url or some other node provider like Infura" ACCOUNT="Your account private key"

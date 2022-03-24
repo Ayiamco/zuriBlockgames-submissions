@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract AyiamcoERC20 is ERC20, Ownable {
+contract AyiamcoStakingToken is ERC20, Ownable {
     using SafeMath for uint256;
 
     uint256 private tokenPrice;
@@ -60,8 +60,15 @@ contract AyiamcoERC20 is ERC20, Ownable {
         return (false, 0);
     }
 
+    /*
+     *  @param price: number of tokens per ETH
+     */
     function modifyTokenBuyPrice(uint256 price) public onlyOwner {
         tokenPrice = 1 ether / price; //token sold at 1000 Tokens per ETH
+    }
+
+    function stakeOf(address _stakeholder) public view returns (uint256) {
+        return stakes[_stakeholder];
     }
 
     function getFixedTotalSupply() public view returns (uint256) {
