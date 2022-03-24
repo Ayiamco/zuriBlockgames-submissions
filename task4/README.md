@@ -1,6 +1,6 @@
 # Basic Sample Hardhat Project
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts.
+The project is UI/Frontend that interacts with a staking/vesting contract deployed on the rinkeby test network. The app-client folder contains the UI that commuinicates with the smart contracts. The project was built using [hardhat](https://hardhat.org/) and [react](https://reactjs.org/)
 
 Try running some of the following tasks:
 
