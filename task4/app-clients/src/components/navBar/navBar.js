@@ -15,13 +15,9 @@ function NavBar({ setModalDisplay }) {
       <div className="navBarInnerCon">
         {/* <h3>Logo👊🏾</h3> */}
         <h3>
-          Make a Wish
-          <span
-            role="img"
-            aria-label="wave-emoji"
-            style={{ marginLeft: "5px" }}
-          >
-            🎂
+          Ayiamco Token
+          <span role="img" aria-label="wave-emoji" style={{ marginLeft: "5px" }}>
+            🚀🚀
           </span>
         </h3>
         <div className="iconCon">
@@ -61,7 +57,7 @@ function NavBar({ setModalDisplay }) {
             <ul className="menuList">
               <li>
                 <a
-                  href="https://github.com/Ayiamco/wishclient"
+                  href="https://github.com/Ayiamco/zuriBlockgames-submissions/tree/master/task4/app-clients"
                   rel="noopener noreferrer"
                   target="_blank"
                 >
@@ -69,11 +65,7 @@ function NavBar({ setModalDisplay }) {
                 </a>
               </li>
               <li>
-                <a
-                  href="https://twitter.com/JosephAchonu"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
+                <a href="https://twitter.com/JosephAchonu" rel="noopener noreferrer" target="_blank">
                   Twitter {<img src={twitter} alt="" />}
                 </a>
               </li>
